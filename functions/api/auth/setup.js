@@ -203,9 +203,13 @@ export async function onRequestPost({ request, env }) {
     }, 201);
 
   } catch (error) {
-    return json({
-      success: false,
-      message: "Administrator initialization failed"
-    }, 500);
-  }
+     console.error(
+    "ADMIN_SETUP_ERROR:",
+    error?.stack || error?.message || String(error)
+  );
+
+  return json({
+    success: false,
+    message: "Administrator initialization failed"
+  }, 500);
 }
